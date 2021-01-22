@@ -1,21 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import {addSmurf}
 
 class AddForm extends React.Component {
+  render() {
+    return (
+      <section>
+        <h2>Add Smurf</h2>
+        <form>
+          <div className='form-group'>
+            <label htmlFor='name'>Name:</label>
+            <br />
+            <input onChange={this.handleChange} name='name' id='name' />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='nickname'>Name:</label>
+            <br />
+            <input onChange={this.handleChange} name='nickname' id='nickname' />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='position'>Name:</label>
+            <br />
+            <input onChange={this.handleChange} name='position' id='position' />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='description'>Name:</label>
+            <br />
+            <input
+              onChange={this.handleChange}
+              name='description'
+              id='description'
+            />
+          </div>
 
-    render() {
-        return(<section>
-            <h2>Add Smurf</h2>
-            <form>
-                <div className="form-group">
-                    <label htmlFor="name">Name:</label><br/>
-                    <input onChange={this.handleChange} name="name" id="name" />
-                </div>
-
-                <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: </div>
-                <button>Submit Smurf</button>
-            </form>
-        </section>);
-    }
+          <div
+            data-testid='errorAlert'
+            className='alert alert-danger'
+            role='alert'
+          >
+            Error:{' '}
+          </div>
+          <button>Submit Smurf</button>
+        </form>
+      </section>
+    );
+  }
 }
 
 export default AddForm;
