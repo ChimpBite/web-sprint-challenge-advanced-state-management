@@ -6,6 +6,7 @@ import './Smurfs.scss';
 class Smurf extends React.Component {
   render() {
     const { smurfs } = this.props;
+    console.log('Smurf Props', smurfs);
 
     return (
       <div data-testid='smurf' className='card'>
@@ -19,7 +20,8 @@ class Smurf extends React.Component {
                 <b>Nickname:</b> {smurf.nickname}
               </p>
               <p>
-                <b>Position:</b> {smurf.position}
+                <b>Position: </b>
+                {smurf.position}
               </p>
               <p>
                 <b>Description:</b> {smurf.description}
@@ -33,7 +35,8 @@ class Smurf extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return state.village;
+  console.log('SmurfJs', state);
+  return state;
 };
 
 export default connect(mapStateToProps)(Smurf);

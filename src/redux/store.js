@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
 // redux dev tool extensions
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -12,16 +12,11 @@ import thunk from 'redux-thunk';
 // bring in reducer
 import smurfReducer from './reducers/smurfReducer';
 
-// combine reducers to keep all reducers in one spot
-const rootReducer = combineReducers({
-  village: smurfReducer,
-});
-
 // keep middleware in one const
 const middlewares = [thunk, logger];
 
 const store = createStore(
-  rootReducer,
+  smurfReducer,
   composeWithDevTools(applyMiddleware(...middlewares))
 );
 

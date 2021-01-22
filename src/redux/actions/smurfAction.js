@@ -20,12 +20,24 @@ export const fetchSmurfs = () => {
   };
 };
 
+// send data
 export const addSmurf = newSmurf => dispatch => {
-  return dispatch => {
-    axios.post('http://localhost:333/smurfs', newSmurf).then(res => {
-      dispatch({ type: ActionTypes.ADD_SMURF, payload: res.data }); // adds the new created smurf
+  dispatch({ type: ActionTypes.ADD_SMURF });
+  axios
+    .post('http://localhost:3333/smurfs', newSmurf)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: ActionTypes.ADD_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: ActionTypes.ADD_ERROR, payload: err });
     });
-  };
+};
+
+// any form errors
+export const addError = error => {
+  return { type: ActionTypes.FORM_ERROR, payload: error };
 };
 
 //Task List:

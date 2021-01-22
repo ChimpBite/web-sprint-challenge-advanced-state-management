@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import AddForm from './components/AddForm';
@@ -10,21 +11,29 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className='App'>
-        <nav className='navbar navbar-dark bg-primary'>
-          <a className='navbar-brand'>Smurf Village Database</a>
-        </nav>
-        <main>
-          <AddForm />
-          <SmurfDisplay />
-        </main>
-      </div>
+      <Router>
+        <div className='App'>
+          <nav className='navbar navbar-dark bg-primary'>
+            <Link to='/smurfvillage' className='navbar-brand'>
+              Smurf Village Database
+            </Link>
+          </nav>
+          <main>
+            <AddForm />
+            <Switch>
+              <Route path='/smurfvillage'>
+                <SmurfDisplay />
+              </Route>
+            </Switch>
+          </main>
+        </div>
+      </Router>
     );
   }
 }
 
 const mapStateToProps = state => {
-  console.log('🚀 ~ file: App.js ~ line 34 ~ state', state.village.smurfs);
+  console.log('AppJs', state);
 
   return state;
 };
