@@ -1,3 +1,5 @@
+import { ActionTypes } from '../actions/action.types';
+
 export const initialState = {
   smurfs: [],
   newSmurfs: {
@@ -10,14 +12,29 @@ export const initialState = {
   error: '',
 };
 
-const reducer = (state = initialState, action) => {
+const smurfReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.FETCHING_SMURFS:
+      return { ...state };
+    case ActionTypes.FETCH_SUCCESS:
+      return { ...state, smurfs: action.payload, fetchingSmurfs: false };
+    case ActionTypes.FETCH_ERROR:
+      return { ...state, error: action.payload };
+    case ActionTypes.ADD_SMURF:
+      // new Smurfs to state
+      const newSmurfs = {
+        name: action.payload,
+        position: action.payload,
+        nickname: action.payload,
+        description: action.payload,
+      };
+      return { ...state.smurfs, newSmurfs };
     default:
       return state;
   }
 };
 
-export default reducer;
+export default smurfReducer;
 
 //Task List:
 
