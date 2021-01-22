@@ -1,15 +1,42 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import './Smurfs.scss';
 
 class Smurf extends React.Component {
-    render() {
-        const { smurf } = this.props;
+  render() {
+    const { smurfs } = this.props;
 
-        return(<div data-testid="smurf" className="card">
-        </div>);
-    }
+    return (
+      <div data-testid='smurf' className='card'>
+        {smurfs.map(smurf => (
+          <div className='smurf-card' key={smurf.id}>
+            <div className='smurf-name'>
+              <h3>{smurf.name}</h3>
+            </div>
+            <div className='smurf-info'>
+              <p>
+                <b>Nickname:</b> {smurf.nickname}
+              </p>
+              <p>
+                <b>Position:</b> {smurf.position}
+              </p>
+              <p>
+                <b>Description:</b> {smurf.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
 
-export default Smurf;
+const mapStateToProps = state => {
+  return state.village;
+};
+
+export default connect(mapStateToProps)(Smurf);
 
 //Task List:
 //1. Access smurf to be displayed through props.
