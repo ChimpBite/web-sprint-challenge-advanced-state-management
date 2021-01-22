@@ -11,12 +11,6 @@ export const initialState = {
         'Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.',
     },
   ],
-  newSmurfs: {
-    name: '',
-    nickname: '',
-    position: '',
-    description: '',
-  },
   fetchingSmurfs: false,
   error: '',
 };
@@ -24,20 +18,30 @@ export const initialState = {
 const smurfReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.FETCHING_SMURFS:
-      return { ...state };
+      return { ...state, fetchingSmurfs: true };
     case ActionTypes.FETCH_SUCCESS:
-      return { ...state, smurfs: action.payload, fetchingSmurfs: false };
-    case ActionTypes.FETCH_ERROR:
-      return { ...state, error: action.payload };
-    case ActionTypes.ADD_SMURF:
-      // new Smurfs to state
-      const newSmurfs = {
-        name: action.payload,
-        position: action.payload,
-        nickname: action.payload,
-        description: action.payload,
+      return {
+        ...state,
+        smurfs: action.payload,
+        fetchingSmurfs: false,
+        error: '',
       };
-      return { ...state.smurfs, newSmurfs };
+    case ActionTypes.FETCH_ERROR:
+      return { ...state, error: action.payload, fetchingSmurfs: false };
+    case ActionTypes.ADD_SMURF:
+      return { ...state, fetchingSmurfs: true };
+    case ActionTypes.ADD_SUCCESS:
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        smurfs: action.payload,
+        error: '',
+      };
+    case ActionTypes.ADD_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return state;
   }
