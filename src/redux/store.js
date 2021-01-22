@@ -14,7 +14,7 @@ import smurfReducer from './reducers/smurfReducer';
 
 // combine reducers to keep all reducers in one spot
 const rootReducer = combineReducers({
-  smurfReducer,
+  village: smurfReducer,
 });
 
 // keep middleware in one const

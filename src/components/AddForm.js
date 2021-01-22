@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { addSmurf } from '../redux/actions/smurfAction';
 
 const AddForm = props => {
+  console.log('Props', props.dispatch);
   const [formData, setFormData] = useState({
     name: '',
     nickname: '',
     position: '',
-    discription: '',
+    description: '',
   });
 
   const handleChange = e => {
@@ -16,12 +18,14 @@ const AddForm = props => {
       [e.target.name]: value,
       [e.target.nickname]: value,
       [e.target.position]: value,
-      [e.target.discription]: value,
+      [e.target.description]: value,
     });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log('Form', formData);
+    console.log('Props', props);
     props.dispatch(addSmurf());
   };
 
@@ -71,7 +75,11 @@ const AddForm = props => {
   );
 };
 
-export default AddForm;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps)(AddForm);
 
 //Task List:
 //Complete

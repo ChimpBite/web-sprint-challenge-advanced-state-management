@@ -1,7 +1,16 @@
 import { ActionTypes } from '../actions/action.types';
 
 export const initialState = {
-  smurfs: [],
+  smurfs: [
+    {
+      id: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
+      name: 'Poppa Smurf',
+      position: 'Village Leader',
+      nickname: 'Pops',
+      description:
+        'Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.',
+    },
+  ],
   newSmurfs: {
     name: '',
     nickname: '',
@@ -38,9 +47,4 @@ export default smurfReducer;
 
 //Task List:
 
-//3. Add in cases to your reducer to handle:
-//      - The start of an api call
-//      - The end of an api call
-//      - The adding a smurf to the smurf list when added into payload
-//      - Setting Error Text
-//      - Any other state changes you see as necessary
+//Complete
